@@ -10,9 +10,15 @@ function Counter() {
   return (
     <div>
       <div>
-        <button onClick={() => setStep((step) => step - 1)}>-</button>
-        <span>{step}</span>
-        <button onClick={() => setStep((step) => step + 1)}>+</button>
+        <input
+          id="myRange"
+          type="range"
+          min="0"
+          max="10"
+          value={step}
+          onChange={(e) => setStep(Number(e.target.value))}
+        />
+        <label htmlFor="myRange">{step}</label>
       </div>
       <div>
         <button
@@ -20,7 +26,10 @@ function Counter() {
         >
           -
         </button>
-        <span>{count}</span>
+        <input
+          value={count}
+          onChange={(e) => setCount(Number(e.target.value))}
+        ></input>
         <button
           onClick={() => setCount((count) => count + (step !== 0 ? step : 1))}
         >
@@ -37,6 +46,14 @@ function Counter() {
       ) : (
         <p>{`Today is ${date.toDateString()}`}</p>
       )}
+      <button
+        onClick={() => {
+          setCount(0);
+          setStep(0);
+        }}
+      >
+        Reset
+      </button>
     </div>
   );
 }
