@@ -46,14 +46,16 @@ function Counter() {
       ) : (
         <p>{`Today is ${date.toDateString()}`}</p>
       )}
-      <button
-        onClick={() => {
-          setCount(0);
-          setStep(0);
-        }}
-      >
-        Reset
-      </button>
+      {count !== 0 || step !== 1 ? (
+        <button
+          onClick={() => {
+            setCount(0);
+            setStep(0);
+          }}
+        >
+          Reset
+        </button>
+      ) : null}
     </div>
   );
 }
